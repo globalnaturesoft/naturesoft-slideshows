@@ -1,0 +1,71 @@
+<!-- Basic datatable -->
+<form>
+  
+    <div class="panel-heading col-md-12">
+        <h5 class="panel-title col-md-6"><span class="text-semibold">Listing Slides</span></h5>
+        <%= link_to 'New Slide', naturesoft.new_admin_slide_path, class: 'btn btn-primary pull-right' %>
+    </div>
+    
+    <form class="listing-form">        
+        <div class="table-container">
+    
+            <table class="table">
+                <thead>
+                    <tr class="bg-teal-800">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @slides.each do |slide| %>
+                        <tr>
+                          <td>
+                            <div class="media-left">
+                              <%= image_tag("", size: "180x110", class: "img-rouded") %>
+                            </div>
+                          </td>
+                          <td>
+                              <%= slide.name %>
+                          </td>
+                          <td>
+                              <%= slide.description %>
+                          </td>
+                          <td><%= slide.created_at.strftime("%d/%m/%Y") %></td>
+                          <td class="text-center">
+                            <ul class="icons-list">
+                              <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+        
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                  <li>
+                                      <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slide_path(slide) %>
+                                  </li>
+                                  <li>
+                                      <%= link_to '<i class="icon-cross2"></i>'.html_safe + t(:delete), naturesoft.admin_slide_path(slide), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-footer showed">
+                    <div class="dataTables_info" ><%= page_entries_info @slides %></div>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        <%= will_paginate @slides, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </form>
+</div>
+<!-- /basic datatable -->
