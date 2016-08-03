@@ -36,7 +36,6 @@
   <div class="form-group">
     <label class="col-lg-2 control-label"><%= t(:image_style) %></label>
     <div class="col-lg-5">
-      <!--<%= select_tag(:image_style, options_for_select(Naturesoft::Slideshows::Slideshow.image_style, :selected => params[:image_style]), class: "select") %>-->
       <select class="select" name="slideshow[image_style]">
         <option <%= "selected" if slideshow.image_style == "fill" %> value="fill"><%= t(:fill) %></option>
         <option <%= "selected" if slideshow.image_style == "fit" %> value="fit"><%= t(:fit) %></option>

@@ -1,72 +1,107 @@
-<!-- Basic datatable -->
-<div class="panel panel-flat">
-  <div class="panel-heading col-md-12">
-    <h5 class="panel-title col-md-6"><span class="text-semibold">Listing Slideshows</span></h5>
-    <%= link_to 'New Slideshow', naturesoft.new_admin_slideshow_path, class: 'btn btn-primary pull-right' %>
-  </div>
-      
-  <form class="listing-form">        
-      <div class="table-container">
+<% title "Slides" %>
+
+<div class="text-right">
+    <a href="#" class="btn btn-primary">New Slideshow</a>
+</div>
+<br />
+<form class="listing-form">
   
-        <table class="table">
-          <thead>
-            <tr class="bg-teal-800">
-                <th>Name</th>
-                <th>Height</th>
-                <th>Width</th>
-                <th>Image Style</th>
-                <th>Created At</th>
-                <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @slideshows.each do |slideshow| %>
-              <tr>
-                <td>
-                  <%= slideshow.name %>
-                </td>
-                <td>
-                  <%= slideshow.height %>
-                </td>
-                <td>
-                  <%= slideshow.width %>
-                </td>
-                <td>
-                  <%= slideshow.image_style %>
-                </td>
-                <td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
-                <td class="text-center">
-                  <ul class="icons-list">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-menu9"></i>
-                      </a>
-  
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li>
-                          <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slideshow_path(slideshow) %>
-                        </li>
-                        <li>
-                          <%= link_to '<i class="icon-cross2"></i>'.html_safe + t(:delete), naturesoft.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="dataTables_wrapper no-footer">
-          <div class="datatable-footer showed">
-              <div class="dataTables_info" ><%= page_entries_info @slideshows %></div>
-              <div class="dataTables_paginate paging_simple_numbers">
-                <%= will_paginate @slideshows, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+  <div class="panel panel-flat">
+      <div class="panel-body filter-box">                
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label><%= t(:image_style) %></label>
+                      <%= select_tag(:style, options_for_select(Naturesoft::Slideshows::Slideshow.filter_image_style, :selected => params[:style]), class: "select") %>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label><%= t(:sort_by) %></label>
+                      <%= select_tag(:sort_by, options_for_select(Naturesoft::Slideshows::Slideshow.sort_by, :selected => params[:sort_by]), class: "select") %>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label><%= t(:sort_order) %></label>
+                      <%= select_tag(:sort_orders, options_for_select(Naturesoft::Slideshows::Slideshow.sort_orders, :selected => params[:sort_orders]), class: "select") %>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group has-feedback">
+                      <label><%= t(:search) %></label>
+                      <input type="text" name="key" class="form-control" placeholder="Enter search..." value="<%= params[:key] %>">
+                      <div class="form-control-feedback">
+                          <i class="icon-search4 text-size-base"></i>
+                      </div>
+                  </div>
               </div>
           </div>
-        </div>
-      
       </div>
-  </form>
-</div>
-<!-- /basic datatable -->
+  </div>
+  
+  <!-- Basic datatable -->
+  <div class="panel panel-flat">
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr class="bg-teal-800">
+              <th>Name</th>
+              <th>Height</th>
+              <th>Width</th>
+              <th>Image Style</th>
+              <th>Created At</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @slideshows.each do |slideshow| %>
+            <tr>
+              <td>
+                <%= slideshow.name %>
+              </td>
+              <td>
+                <%= slideshow.height %>
+              </td>
+              <td>
+                <%= slideshow.width %>
+              </td>
+              <td>
+                <%= slideshow.image_style %>
+              </td>
+              <td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
+              <td class="text-center">
+                <ul class="icons-list">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="icon-menu9"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li>
+                        <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slideshow_path(slideshow) %>
+                      </li>
+                      <li>
+                        <%= link_to '<i class="icon-cross2"></i>'.html_safe + t(:delete), naturesoft.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="dataTables_wrapper no-footer">
+        <div class="datatable-footer showed">
+            <div class="dataTables_info" ><%= page_entries_info @slideshows %></div>
+            <div class="dataTables_paginate paging_simple_numbers">
+              <%= will_paginate @slideshows, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+            </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  <!-- /basic datatable -->
+</form>

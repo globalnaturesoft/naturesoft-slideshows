@@ -1,7 +1,7 @@
 <% title "Slides" %>
 
 <div class="text-right">
-    <a href="#" class="btn btn-primary">New slide</a>
+    <a href="#" class="btn btn-primary">New Slide</a>
 </div>
 <br />
 <form class="listing-form">
@@ -12,25 +12,25 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Slideshows</label>
-                        <input class="form-control" />
+                        <%= select_tag(:slideshow_id, options_from_collection_for_select(Naturesoft::Slideshows::Slideshow.all, :id, :name, :selected => params[:slideshow_id]), include_blank: t(:all), class: "select") %>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Sort by</label>
-                        <input class="form-control" />
+                        <label><%= t(:sort_by) %></label>
+                        <%= select_tag(:sort_by, options_for_select(Naturesoft::Slideshows::Slide.sort_by, :selected => params[:sort_by]), class: "select") %>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Sort order</label>
-                        <input class="form-control" />
+                        <label><%= t(:sort_order) %></label>
+                        <%= select_tag(:sort_orders, options_for_select(Naturesoft::Slideshows::Slide.sort_orders, :selected => params[:sort_orders]), class: "select") %>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group has-feedback">
-                        <label>Search</label>
-                        <input type="text" class="form-control" placeholder="Enter search...">
+                        <label><%= t(:search) %></label>
+                        <input type="text" name="key" class="form-control" placeholder="Enter search..." value="<%= params[:key] %>">
                         <div class="form-control-feedback">
                             <i class="icon-search4 text-size-base"></i>
                         </div>
@@ -101,5 +101,5 @@
             </div>
         </div>    
     </div>
+    <!-- /basic datatable -->
 </form>
-<!-- /basic datatable -->
