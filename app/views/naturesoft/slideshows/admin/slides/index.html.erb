@@ -1,13 +1,14 @@
 <% title "Slides" %>
 
 <div class="text-right">
-    <%= link_to t(:new_slide), naturesoft.new_admin_slide_path, class: 'btn btn-primary' %>
+    <%= link_to ("#{t(:new_slide)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_slide_path, class: 'btn btn-primary' %>
 </div>
 <br />
+
 <form class="listing-form">
     
     <div class="panel panel-flat">
-        <div class="panel-body filter-box">                
+        <div class="panel-body filter-box">
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
@@ -43,12 +44,13 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat">        
         <div class="table-container">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                     <tr class="bg-teal-800">
                         <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Creator</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -57,15 +59,20 @@
                     <% @slides.each do |slide| %>
                         <tr>
                           <td>
-                            <div class="media-left">
-                              <%= image_tag("", size: "180x110", class: "img-rouded") %>
-                            </div>
+                              <%= image_tag("", size: "80x60", class: "img-rounded img-preview") %>
+                            
                           </td>
                           <td>
                               <%= slide.name %>
                           </td>
                           <td>
                               <%= slide.description %>
+                          </td>
+                          <td>
+                            <div class="media-left align_center">
+                                <img src="" class="img-circle" alt="">
+                                <br />Creator
+                            </div>
                           </td>
                           <td><%= slide.created_at.strftime("%d/%m/%Y") %></td>
                           <td class="text-center">
@@ -80,7 +87,7 @@
                                       <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slide_path(slide) %>
                                   </li>
                                   <li>
-                                      <%= link_to '<i class="icon-cross2"></i>'.html_safe + t(:delete), naturesoft.admin_slide_path(slide), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                                      <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_slide_path(slide), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
                                   </li>
                                 </ul>
                               </li>

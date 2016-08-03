@@ -1,7 +1,7 @@
-<% title "Slides" %>
+<% title "Slideshows" %>
 
 <div class="text-right">
-    <%= link_to t(:new_slideshow), naturesoft.new_admin_slideshow_path, class: 'btn btn-primary' %>
+    <%= link_to ("#{t(:new_slideshow)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_slideshow_path, class: 'btn btn-primary' %>
 </div>
 <br />
 <form class="listing-form">
@@ -12,7 +12,7 @@
               <div class="col-md-3">
                   <div class="form-group">
                       <label><%= t(:image_style) %></label>
-                      <%= select_tag(:style, options_for_select(Naturesoft::Slideshows::Slideshow.filter_image_style, :selected => params[:style]), class: "select") %>
+                      <%= select_tag(:style, options_for_select(Naturesoft::Slideshows::Slideshow.filter_image_style, :selected => params[:style]), include_blank: t(:all), class: "select") %>
                   </div>
               </div>
               <div class="col-md-3">
@@ -43,13 +43,14 @@
   <!-- Basic datatable -->
   <div class="panel panel-flat">
     <div class="table-container">
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <tr class="bg-teal-800">
               <th>Name</th>
               <th>Height</th>
               <th>Width</th>
               <th>Image Style</th>
+              <th>Creator</th>
               <th>Created At</th>
               <th>Actions</th>
           </tr>
@@ -69,6 +70,12 @@
               <td>
                 <%= slideshow.image_style %>
               </td>
+              <td>
+                <div class="media-left align_center">
+                    <img src="" class="img-circle" alt="">
+                    <br />Creator
+                </div>
+              </td>
               <td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
               <td class="text-center">
                 <ul class="icons-list">
@@ -82,7 +89,7 @@
                         <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slideshow_path(slideshow) %>
                       </li>
                       <li>
-                        <%= link_to '<i class="icon-cross2"></i>'.html_safe + t(:delete), naturesoft.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                        <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
                       </li>
                     </ul>
                   </li>

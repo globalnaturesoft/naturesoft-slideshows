@@ -1,9 +1,9 @@
+<% title "Edit slideshow: " + @slideshow.name %>
+
 <!-- Basic layout-->
 <div class="panel panel-flat">
   
-  <div class="panel-heading">
-    <h5 class="panel-title"><%= t(:editing_slide) %></h5>
-  </div>
+  <div class="panel-heading"></div>
   
   <div class="panel-body">
     <%= render 'form', slideshow: @slideshow %>
@@ -11,20 +11,3 @@
 
 </div>
 <!-- /basic layout -->
-
-<!-- Theme JS files -->
-<%= javascript_include_tag '/backend/assets/js/core/libraries/jquery_ui/core.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/uniform.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/styling/switchery.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/select2.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/bootstrap_multiselect.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/selectboxit.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/forms/selects/bootstrap_select.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/notifications/pnotify.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/notifications/noty.min.js' %>
-<%= javascript_include_tag '/backend/assets/js/plugins/notifications/jgrowl.min.js' %>
-
-<%= javascript_include_tag '/backend/assets/js/core/app.js' %>
-<%= javascript_include_tag '/backend/assets/js/pages/colors_teal.js' %>
-<%= javascript_include_tag '/backend/assets/js/pages/form_layouts.js' %>
-<!-- /theme JS files -->

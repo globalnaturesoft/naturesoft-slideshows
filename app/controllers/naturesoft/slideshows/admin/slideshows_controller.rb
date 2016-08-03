@@ -1,25 +1,36 @@
 module Naturesoft
   module Slideshows
     module Admin
-      class SlideshowsController < AdminController
+      class SlideshowsController < Naturesoft::Admin::AdminController
         before_action :set_slideshow, only: [:show, :edit, :update, :destroy]
+        before_action :default_breadcrumb
+        
+        # add top breadcrumb
+        def default_breadcrumb
+          add_breadcrumb "Slideshows", naturesoft.admin_slideshows_path
+        end
     
         # GET /slideshows
         def index
-          @slideshows = Slideshow.all.paginate(:page => params[:page], :per_page => 10)
+          @slideshows = Slideshow.search(params).paginate(:page => params[:page], :per_page => 10)
         end
     
         # GET /slideshows/1
         def show
+          add_breadcrumb @slideshow.name, naturesoft.new_admin_slideshow_path
+          add_breadcrumb "Show"
         end
     
         # GET /slideshows/new
         def new
           @slideshow = Slideshow.new
+          add_breadcrumb "New slideshow", naturesoft.new_admin_slideshow_path
         end
     
         # GET /slideshows/1/edit
         def edit
+          add_breadcrumb @slideshow.name, naturesoft.new_admin_slideshow_path
+          add_breadcrumb "Edit"
         end
     
         # POST /slideshows
