@@ -1,31 +1,52 @@
-<%= form_for([naturesoft, slideshow]) do |f| %>
-  <% if slideshow.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(slideshow.errors.count, "error") %> prohibited this slideshow from being saved:</h2>
+<% if slideshow.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(slideshow.errors.count, "error") %> prohibited this slideshow from being saved:</h2>
 
-      <ul>
-      <% slideshow.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <ul>
+    <% slideshow.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for([naturesoft, :admin, slideshow], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
   
   <div class="form-group">
-      <%= f.label :height, class: "control-label" %>
-      <%= f.text_field :height, class: "form-control" %>
+    <label class="col-lg-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+    <div class="col-lg-10">
+      <%= f.text_field :name, class: "form-control required" %>
     </div>
-    <div class="form-group">
-      <%= f.label :width, class: "control-label" %>
-      <%= f.text_field :width, class: "form-control" %>
+  </div>
+      
+  <div class="form-group">
+    <label class="col-lg-2 control-label" ><%= t(:width) %> <span class='text-danger'>*</span></label>
+    <div class="col-lg-10">
+      <%= f.text_field :width, class: "form-control required" %>
     </div>
-    <div class="form-group">
-      <%= f.label :image_style, class: "control-label" %>
-      <%= f.text_field :image_style, class: "form-control" %>
+  </div>
+    
+  <div class="form-group">
+    <label class="col-lg-2 control-label" ><%= t(:height) %> <span class='text-danger'>*</span></label>
+    <div class="col-lg-10">
+      <%= f.text_field :height, class: "form-control required" %>
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label class="col-lg-2 control-label"><%= t(:image_style) %></label>
+    <div class="col-lg-5">
+      <!--<%= select_tag(:image_style, options_for_select(Naturesoft::Slideshows::Slideshow.image_style, :selected => params[:image_style]), class: "select") %>-->
+      <select class="select" name="slideshow[image_style]">
+        <option <%= "selected" if slideshow.image_style == "fill" %> value="fill"><%= t(:fill) %></option>
+        <option <%= "selected" if slideshow.image_style == "fit" %> value="fit"><%= t(:fit) %></option>
+      </select>
     </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="text-right">
+    <%= button_tag "#{t(:save)}<i class=\"icon-plus22 position-right\"></i>".html_safe, class: "btn btn-primary"%>
+    <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft.admin_slideshows_path, class: "btn btn-danger"%>
   </div>
+    
 <% end %>
