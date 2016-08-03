@@ -3,7 +3,13 @@ module Naturesoft
     module Admin
       class SlidesController < AdminController
         before_action :set_slide, only: [:show, :edit, :update, :destroy]
-    
+        before_action :default_breadcrumb
+        
+        # add top breadcrumb
+        def default_breadcrumb
+          add_breadcrumb "Slides", naturesoft.admin_slides_path
+        end
+        
         # GET /slides
         def index
           @slides = Naturesoft::Slideshows::Slide.all.paginate(:page => params[:page], :per_page => 10)
@@ -16,10 +22,13 @@ module Naturesoft
         # GET /slides/new
         def new
           @slide = Naturesoft::Slideshows::Slide.new
+          add_breadcrumb "New slide", naturesoft.new_admin_slide_path
         end
     
         # GET /slides/1/edit
         def edit
+          add_breadcrumb @slide.name, naturesoft.new_admin_slide_path
+          add_breadcrumb "Edit", nil,  class: "active"
         end
     
         # POST /slides
