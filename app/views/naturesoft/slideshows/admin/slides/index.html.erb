@@ -1,14 +1,46 @@
-<!-- Basic datatable -->
-<div class="panel panel-flat">
-  
-    <div class="panel-heading col-md-12">
-        <h5 class="panel-title col-md-6"><span class="text-semibold">Listing Slides</span></h5>
-        <%= link_to 'New Slide', naturesoft.new_admin_slide_path, class: 'btn btn-primary pull-right' %>
+<div class="text-right">
+    <a href="#" class="btn btn-primary">New slide</a>
+</div>
+<br />
+<form class="listing-form">
+    
+    <div class="panel panel-flat">
+        <div class="panel-body filter-box">                
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Slideshows</label>
+                        <input class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Sort by</label>
+                        <input class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Sort order</label>
+                        <input class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group has-feedback">
+                        <label>Search</label>
+                        <input type="text" class="form-control" placeholder="Enter search...">
+                        <div class="form-control-feedback">
+                            <i class="icon-search4 text-size-base"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <form class="listing-form">        
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">        
         <div class="table-container">
-    
             <table class="table">
                 <thead>
                     <tr class="bg-teal-800">
@@ -56,16 +88,16 @@
                     <% end %>
                 </tbody>
             </table>
-            <div class="dataTables_wrapper no-footer">
-                <div class="datatable-footer showed">
-                    <div class="dataTables_info" ><%= page_entries_info @slides %></div>
-                    <div class="dataTables_paginate paging_simple_numbers">
-                        <%= will_paginate @slides, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
-                    </div>
+        </div>
+        
+        <div class="dataTables_wrapper no-footer">
+            <div class="datatable-footer showed">
+                <div class="dataTables_info" ><%= page_entries_info @slides %></div>
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <%= will_paginate @slides, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
                 </div>
             </div>
-        
-        </div>
-    </form>
-</div>
+        </div>    
+    </div>
+</form>
 <!-- /basic datatable -->
