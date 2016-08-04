@@ -49,7 +49,9 @@ module Naturesoft
 	  #   "something.jpg" if original_filename
 	  # end
 	  
-	  
+	  version :thumb do
+		process :slide_resize
+	  end 
 	  
 	  def slide_resize()
 		if model.slideshow.present? 
