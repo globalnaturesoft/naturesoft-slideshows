@@ -16,7 +16,7 @@
     <label class="col-lg-2 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
     <div class="media no-margin-top col-lg-10">
       <div class="media-left">
-        <a href="#"><img src="/backend/assets/images/placeholder.jpg" style="width: 58px; height: 58px; border-radius: 2px;" alt=""></a>
+        <a href="#"><img src="<%= slide.image.system %>" style="width: 60px; height: 60px; border-radius: 2px;" alt=""></a>
       </div>
 
       <div class="media-body">
@@ -43,7 +43,7 @@
   <div class="form-group">
     <label class="col-lg-2 control-label" ><%= t(:slideshow_option) %> <span class='text-danger'>*</span></label>
     <div class="col-lg-6">
-      <%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select"}) %>
+      <%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>
     </div>
   </div>
 

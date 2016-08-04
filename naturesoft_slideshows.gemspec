@@ -7,8 +7,12 @@ require "naturesoft/slideshows/version"
 Gem::Specification.new do |s|
   s.name        = "naturesoft_slideshows"
   s.version     = Naturesoft::Slideshows::VERSION
-  s.authors     = ["Global Naturesoft"]
-  s.email       = ["globalnaturesoft@gmail.com"]
+  s.authors     = ["Luan Pham",
+                  "Son Nguyen",
+                  "Hung Nguyen"]
+  s.email       = ["luanpm@hoangkhang.com.vn",
+                  "sonnn@hoangkhang.com.vn",
+                  "hungnt@hoangkhang.com.vn"]
   s.homepage    = "http://globalnaturesoft.com"
   s.summary     = "Slideshow feature for Naturesoft."
   s.description = "Slideshow feature for Naturesoft."
@@ -19,6 +23,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.0.0"
   s.add_dependency "naturesoft_core"
-
   s.add_dependency "deface"
 end
