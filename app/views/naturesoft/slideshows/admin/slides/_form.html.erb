@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_for([naturesoft, :admin, slide], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
+<%= form_for([naturesoft, :admin, slide], html: {class: "form-horizontal", id: "validate_checking", multipart: true}) do |f| %>
 
   <div class="form-group">
     <label class="col-lg-2 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="media-body">
-        <input type="file" class="file-styled">
+        <input type="file" name="slide[image]" class="file-styled">
         <span class="help-block">Accepted formats: gif, png, jpg.</span>
       </div>
     </div>
