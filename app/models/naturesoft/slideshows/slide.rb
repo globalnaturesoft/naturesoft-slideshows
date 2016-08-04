@@ -1,8 +1,8 @@
 module Naturesoft::Slideshows
   class Slide < ApplicationRecord
     belongs_to :user
-	belongs_to :slideshow
-	mount_uploader :image, Naturesoft::Slideshows::SlideUploader
+		belongs_to :slideshow
+		mount_uploader :image, Naturesoft::Slideshows::SlideUploader
     
     def self.sort_by
       [
