@@ -1,7 +1,7 @@
 <% title "Slideshows" %>
 
 <div class="text-right">
-    <%= link_to ("#{t(:new_slideshow)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_slideshow_path, class: 'btn btn-primary' %>
+    <%= link_to ("#{t(:new_slideshow)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft_slideshows.new_admin_slideshow_path, class: 'btn btn-primary' %>
 </div>
 <br />
 <form class="listing-form">
@@ -86,10 +86,10 @@
 
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>
-                        <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slideshow_path(slideshow) %>
+                        <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft_slideshows.edit_admin_slideshow_path(slideshow) %>
                       </li>
                       <li>
-                        <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                        <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft_slideshows.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
                       </li>
                     </ul>
                   </li>

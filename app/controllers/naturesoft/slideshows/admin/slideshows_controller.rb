@@ -7,7 +7,7 @@ module Naturesoft
         
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Slideshows", naturesoft.admin_slideshows_path
+          add_breadcrumb "Slideshows", naturesoft_slideshows.admin_slideshows_path
         end
     
         # GET /slideshows
@@ -17,19 +17,19 @@ module Naturesoft
     
         # GET /slideshows/1
         def show
-          add_breadcrumb @slideshow.name, naturesoft.new_admin_slideshow_path
+          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_admin_slideshow_path
           add_breadcrumb "Show"
         end
     
         # GET /slideshows/new
         def new
           @slideshow = Slideshow.new
-          add_breadcrumb "New slideshow", naturesoft.new_admin_slideshow_path
+          add_breadcrumb "New slideshow", naturesoft_slideshows.new_admin_slideshow_path
         end
     
         # GET /slideshows/1/edit
         def edit
-          add_breadcrumb @slideshow.name, naturesoft.new_admin_slideshow_path
+          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_admin_slideshow_path
           add_breadcrumb "Edit"
         end
     

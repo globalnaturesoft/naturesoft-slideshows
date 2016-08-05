@@ -2,6 +2,13 @@ module Naturesoft::Slideshows
   class Slide < ApplicationRecord
     belongs_to :user
 		belongs_to :slideshow
+		
+		validates :name, presence: true
+		validates :image, presence: true
+		validates :image, allow_blank: true, format: {
+			with: %r{\.(gif|jpg|png)\Z}i,
+			message: 'must be a URL for GIF, JPG or PNG image.'
+		}
 		mount_uploader :image, Naturesoft::Slideshows::SlideUploader
     
     def self.sort_by
