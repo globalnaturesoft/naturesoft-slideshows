@@ -7,29 +7,29 @@ module Naturesoft
         
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Slides", naturesoft.admin_slides_path
+          add_breadcrumb "Slides", naturesoft_slideshows.admin_slides_path
         end
         
         # GET /slides
         def index
-          @slides = Naturesoft::Slideshows::Slide.search(params).paginate(:page => params[:page], :per_page => 10)
+          @slides = Naturesoft::Slideshows::Slide.search(params).paginate(:page => params[:page], :per_page => 1)
         end
     
         # GET /slides/1
         def show
-          add_breadcrumb @slide.name, naturesoft.new_admin_slide_path
+          add_breadcrumb @slide.name, naturesoft_slideshows.new_admin_slide_path
           add_breadcrumb "Show"
         end
     
         # GET /slides/new
         def new
           @slide = Naturesoft::Slideshows::Slide.new
-          add_breadcrumb "New slide", naturesoft.new_admin_slide_path
+          add_breadcrumb "New slide", naturesoft_slideshows.new_admin_slide_path
         end
     
         # GET /slides/1/edit
         def edit
-          add_breadcrumb @slide.name, naturesoft.new_admin_slide_path
+          add_breadcrumb @slide.name, naturesoft_slideshows.new_admin_slide_path
           add_breadcrumb "Edit"
         end
     

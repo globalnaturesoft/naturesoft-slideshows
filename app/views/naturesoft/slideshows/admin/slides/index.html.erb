@@ -1,7 +1,7 @@
 <% title "Slides" %>
 
 <div class="text-right">
-    <%= link_to ("#{t(:new_slide)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft.new_admin_slide_path, class: 'btn btn-primary' %>
+    <%= link_to ("#{t(:new_slide)}" + '<i class="icon-plus22 position-right"></i>').html_safe, naturesoft_slideshows.new_admin_slide_path, class: 'btn btn-primary' %>
 </div>
 <br />
 
@@ -84,10 +84,10 @@
         
                                 <ul class="dropdown-menu dropdown-menu-right">
                                   <li>
-                                      <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft.edit_admin_slide_path(slide) %>
+                                      <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft_slideshows.edit_admin_slide_path(slide) %>
                                   </li>
                                   <li>
-                                      <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft.admin_slide_path(slide), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+                                      <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft_slideshows.admin_slide_path(slide), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
                                   </li>
                                 </ul>
                               </li>
@@ -97,16 +97,17 @@
                     <% end %>
                 </tbody>
             </table>
+			<div class="dataTables_wrapper no-footer">
+				<div class="datatable-footer showed">
+					<div class="dataTables_info" ><%= page_entries_info @slides %></div>
+					<div class="dataTables_paginate paging_simple_numbers">
+						<%= will_paginate @slides, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
+					</div>
+				</div>
+			</div>  
         </div>
         
-        <div class="dataTables_wrapper no-footer">
-            <div class="datatable-footer showed">
-                <div class="dataTables_info" ><%= page_entries_info @slides %></div>
-                <div class="dataTables_paginate paging_simple_numbers">
-                    <%= will_paginate @slides, previous_label: '←', next_label: '→', renderer: BootstrapPagination::Rails %>
-                </div>
-            </div>
-        </div>    
+          
     </div>
     <!-- /basic datatable -->
 </form>
