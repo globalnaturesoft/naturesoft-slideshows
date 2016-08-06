@@ -57,7 +57,7 @@ module Naturesoft
         # DELETE /slideshows/1
         def destroy
           @slideshow.destroy
-          redirect_to admin_slideshows_path, notice: 'Slideshow was successfully destroyed.'
+          render text: 'Slideshow was successfully destroyed.'
         end
     
         private

@@ -1,6 +1,9 @@
 module Naturesoft::Slideshows
   class Slideshow < ApplicationRecord
     belongs_to :user
+    validates :name, presence: true
+    validates :width, presence: true
+    validates :height, presence: true
     
     def self.filter_image_style
       [

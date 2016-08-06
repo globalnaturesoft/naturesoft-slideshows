@@ -1,10 +1,10 @@
 <li>
   <a href="#"><i class="glyphicon glyphicon-camera"></i> <span>Slideshow</span></a>
   <ul>
-      <li class="<%= active(naturesoft_slideshows.admin_slideshows_path) %>">
+      <li<% if["naturesoft/slideshows/admin/slideshows"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Slideshows', naturesoft_slideshows.admin_slideshows_path %>
       </li>
-      <li class="<%= active(naturesoft_slideshows.admin_slides_path) %>">
+      <li<% if["naturesoft/slideshows/admin/slides"].include?(params[:controller]) %>class="active"<% end %>>
         <%= link_to 'Slides', naturesoft_slideshows.admin_slides_path %>
       </li>
   </ul>
