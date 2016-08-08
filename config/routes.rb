@@ -6,6 +6,11 @@ Naturesoft::Slideshows::Engine.routes.draw do
         put ':id/disable' => 'slides#disable', :as => 'disable'
       end
     end
-    resources :slideshows
+    resources :slideshows do
+      collection do
+        put ':id/enable' => 'slideshows#enable', :as => 'enable'
+        put ':id/disable' => 'slideshows#disable', :as => 'disable'
+      end
+    end
   end
 end

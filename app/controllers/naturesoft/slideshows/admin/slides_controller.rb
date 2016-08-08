@@ -61,12 +61,13 @@ module Naturesoft
           render text: "Slide was successfully destroyed."
         end
         
-        #CHANGE STATUS /slides
+        # ENABLE /slides/stutus
         def enable
           @slide.enable
           render text: "Status was sucessfully enabled"
         end
         
+        # DISABLE /slides/stutus
         def disable
           @slide.disable
           render text: "Status was sucessfully disabled"

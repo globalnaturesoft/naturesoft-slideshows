@@ -80,14 +80,14 @@
 						<%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft_slideshows.edit_admin_slide_path(slide), class: "btn bg-teal-400 btn-icon" %>
 						<button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<% if slide.status == 'active' %>
-								<li>
-									<%= link_to "<i class=\"icon-unlocked2\"></i> Enable".html_safe, naturesoft_slideshows.enable_admin_slides_path(slide), method: :put, data: { confirm: 'You want change?' } %>
-								</li>
-							<% end %>
 							<% if slide.status == 'inactive' %>
 								<li>
-									<%= link_to "<i class=\"icon-lock2\"></i> Disable".html_safe, naturesoft_slideshows.disable_admin_slides_path(slide), method: :put, data: { confirm: 'You want change?' } %>
+									<%= link_to "<i class=\"icon-unlocked2\"></i> Enable".html_safe, naturesoft_slideshows.enable_admin_slides_path(slide), method: :put %>
+								</li>
+							<% end %>
+							<% if slide.status == 'active' %>
+								<li>
+									<%= link_to "<i class=\"icon-lock2\"></i> Disable".html_safe, naturesoft_slideshows.disable_admin_slides_path(slide), method: :put %>
 								</li>
 							<% end %>
 							<li class="divider"></li>

@@ -47,17 +47,13 @@ module Naturesoft::Slideshows
       return records
     end
     
-    # change status
+    # enable/disable status
     def enable
-			if status == "active"
-				update_columns(status: "inactive")
-			end
+			update_columns(status: "active")
 		end
     
     def disable
-			if status == "inactive"
-				update_columns(status: "active")
-			end
+			update_columns(status: "inactive")
 		end
   end
 end

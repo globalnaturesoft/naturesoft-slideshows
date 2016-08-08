@@ -2,7 +2,7 @@ module Naturesoft
   module Slideshows
     module Admin
       class SlideshowsController < Naturesoft::Admin::AdminController
-        before_action :set_slideshow, only: [:show, :edit, :update, :destroy]
+        before_action :set_slideshow, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
         
         # add top breadcrumb
@@ -60,10 +60,16 @@ module Naturesoft
           render text: 'Slideshow was successfully destroyed.'
         end
         
-        #CHANGE STATUS /slides
-        def change
-          @slideshow.change_status
-          render text: "Status was sucessfully changed"
+        # ENABLE /slides/stutus
+        def enable
+          @slideshow.enable
+          render text: "Status was sucessfully enabled"
+        end
+        
+        # DISABLE /slides/stutus
+        def disable
+          @slideshow.disable
+          render text: "Status was sucessfully disabled"
         end
     
         private
@@ -74,7 +80,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def slideshow_params
-            params.fetch(:slideshow, {}).permit(:name, :height, :width, :image_style)
+            params.fetch(:slideshow, {}).permit(:name, :height, :width, :image_style, :status)
           end
       end
     end
