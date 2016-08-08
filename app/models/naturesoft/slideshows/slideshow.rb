@@ -35,8 +35,8 @@ module Naturesoft::Slideshows
       end
       
       #Search keyword filter
-      if params[:key].present?
-        params[:key].split(" ").each do |k|
+      if params[:keyword].present?
+        params[:keyword].split(" ").each do |k|
           records = records.where("LOWER(CONCAT(naturesoft_slideshows_slideshows.name,' ',naturesoft_slideshows_slideshows.height,' ',naturesoft_slideshows_slideshows.width,' ',naturesoft_slideshows_slideshows.image_style)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
         end
       end

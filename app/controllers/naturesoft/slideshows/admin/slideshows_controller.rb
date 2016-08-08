@@ -59,6 +59,12 @@ module Naturesoft
           @slideshow.destroy
           render text: 'Slideshow was successfully destroyed.'
         end
+        
+        #CHANGE STATUS /slides
+        def change
+          @slideshow.change_status
+          render text: "Status was sucessfully changed"
+        end
     
         private
           # Use callbacks to share common setup or constraints between actions.

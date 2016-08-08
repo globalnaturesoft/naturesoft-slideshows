@@ -2,8 +2,9 @@ module Naturesoft
   module Slideshows
     module Admin
       class SlidesController < Naturesoft::Admin::AdminController
-        before_action :set_slide, only: [:show, :edit, :update, :destroy]
+        before_action :set_slide, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
+        helper_method :change 
         
         # add top breadcrumb
         def default_breadcrumb
@@ -59,6 +60,17 @@ module Naturesoft
           @slide.destroy
           render text: "Slide was successfully destroyed."
         end
+        
+        #CHANGE STATUS /slides
+        def enable
+          @slide.enable
+          render text: "Status was sucessfully enabled"
+        end
+        
+        def disable
+          @slide.disable
+          render text: "Status was sucessfully disabled"
+        end
     
         private
           # Use callbacks to share common setup or constraints between actions.
@@ -68,7 +80,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def slide_params
-            params.fetch(:slide, {}).permit(:name, :description, :image, :slideshow_id)
+            params.fetch(:slide, {}).permit(:name, :description, :image, :slideshow_id, :status)
           end
       end
     end

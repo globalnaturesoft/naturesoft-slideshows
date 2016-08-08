@@ -30,7 +30,7 @@
               <div class="col-md-3">
                   <div class="form-group has-feedback">
                       <label><%= t(:search) %></label>
-                      <input type="text" name="key" class="form-control" placeholder="Enter search..." value="<%= params[:key] %>">
+                      <input type="text" name="keyword" class="form-control" placeholder="Enter search..." value="<%= params[:keyword] %>">
                       <div class="form-control-feedback">
                           <i class="icon-search4 text-size-base"></i>
                       </div>
@@ -47,27 +47,24 @@
         <thead>
           <tr class="bg-teal-800">
               <th>Name</th>
-              <th>Height</th>
-              <th>Width</th>
+              <th>Size</th>
               <th>Image Style</th>
               <th>Creator</th>
               <th>Created At</th>
-              <th>Actions</th>
+							<th>Status</th>
+              <th class="text-right">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% @slideshows.each do |slideshow| %>
             <tr>
-              <td>
+              <td class="kq_search">
                 <%= slideshow.name %>
               </td>
-              <td>
-                <%= slideshow.height %>
+              <td class="kq_search">
+                <%= slideshow.width %>x<%= slideshow.height %>
               </td>
-              <td>
-                <%= slideshow.width %>
-              </td>
-              <td>
+              <td class="kq_search">
                 <%= slideshow.image_style %>
               </td>
               <td>
@@ -77,23 +74,21 @@
                 </div>
               </td>
               <td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
-              <td class="text-center">
-                <ul class="icons-list">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <i class="icon-menu9"></i>
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right">
-                      <li>
-                        <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe + t(:edit), naturesoft_slideshows.edit_admin_slideshow_path(slideshow) %>
-                      </li>
-                      <li>
-                        <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft_slideshows.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+							<td></td>
+              <td class="text-right">
+                <div class="btn-group">
+									<%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft_slideshows.edit_admin_slideshow_path(slideshow), class: "btn bg-teal-400 btn-icon" %>
+                  <button type="button" class="btn bg-teal-400 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											
+										</li>
+										<li class="divider"></li>
+										<li>
+											<%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe + t(:delete), naturesoft_slideshows.admin_slideshow_path(slideshow), method: :delete, data: { confirm: 'Are you sure?' } , class: "backend_delete_item" %>
+										</li>
+									</ul>
+								</div>
               </td>
             </tr>
           <% end %>

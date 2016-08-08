@@ -33,8 +33,8 @@ module Naturesoft::Slideshows
       end
       
       #Search keyword filter
-      if params[:key].present?
-        params[:key].split(" ").each do |k|
+      if params[:keyword].present?
+        params[:keyword].split(" ").each do |k|
           records = records.where("LOWER(CONCAT(naturesoft_slideshows_slides.name,' ',naturesoft_slideshows_slides.description)) LIKE ?", "%#{k.strip.downcase}%") if k.strip.present?
         end
       end
@@ -46,5 +46,18 @@ module Naturesoft::Slideshows
       
       return records
     end
+    
+    # change status
+    def enable
+			if status == "active"
+				update_columns(status: "inactive")
+			end
+		end
+    
+    def disable
+			if status == "inactive"
+				update_columns(status: "active")
+			end
+		end
   end
 end
