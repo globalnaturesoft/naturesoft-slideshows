@@ -1,4 +1,4 @@
-class CreateNaturesoftSlideshows < ActiveRecord::Migration[5.0]
+class CreateNaturesoftSlideshowsSlideshows < ActiveRecord::Migration[5.0]
   def change
     create_table :naturesoft_slideshows_slideshows do |t|
       t.string :name

@@ -21,34 +21,40 @@
     
     <%= form_for([naturesoft_slideshows, :admin, slideshow], html: {class: "form-horizontal", id: "validate_checking"}) do |f| %>
       
-      <div class="form-group">
-        <label class="col-lg-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
-        <div class="col-lg-10">
-          <%= f.text_field :name, class: "form-control required" %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-3 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-9">
+              <%= f.text_field :name, class: "form-control required" %>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label class="col-md-3 control-label" ><%= t(:width) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-9">
+              <%= f.text_field :width, class: "form-control number_input required" %>
+            </div>
+          </div>
         </div>
-      </div>
           
-      <div class="form-group">
-        <label class="col-lg-2 control-label" ><%= t(:width) %> <span class='text-danger'>*</span></label>
-        <div class="col-lg-10">
-          <%= f.text_field :width, class: "form-control required" %>
-        </div>
-      </div>
-        
-      <div class="form-group">
-        <label class="col-lg-2 control-label" ><%= t(:height) %> <span class='text-danger'>*</span></label>
-        <div class="col-lg-10">
-          <%= f.text_field :height, class: "form-control required" %>
-        </div>
-      </div>
-        
-      <div class="form-group">
-        <label class="col-lg-2 control-label"><%= t(:image_style) %></label>
-        <div class="col-lg-5">
-          <select class="select2" name="slideshow[image_style]">
-            <option <%= "selected" if slideshow.image_style == "fill" %> value="fill"><%= t(:fill) %></option>
-            <option <%= "selected" if slideshow.image_style == "fit" %> value="fit"><%= t(:fit) %></option>
-          </select>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-3 control-label"><%= t(:image_style) %></label>
+            <div class="col-md-9">
+              <select class="select2" name="slideshow[image_style]">
+                <option <%= "selected" if slideshow.image_style == "fill" %> value="fill"><%= t(:fill) %></option>
+                <option <%= "selected" if slideshow.image_style == "fit" %> value="fit"><%= t(:fit) %></option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-md-3 control-label" ><%= t(:height) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-9">
+              <%= f.text_field :height, class: "form-control number_input required" %>
+            </div>
+          </div>
         </div>
       </div>
     
