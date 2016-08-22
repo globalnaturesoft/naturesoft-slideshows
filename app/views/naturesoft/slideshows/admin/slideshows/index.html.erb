@@ -39,27 +39,47 @@
 			</div>
 		</div>
 	</div>
-	
+	<div class="btn-group list_actions mb-10 hide">
+        <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown">
+            Actions <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">											
+            <li>
+                <a href="" data-href="<%= naturesoft_slideshows.delete_admin_slideshows_path %>" data-confirm="Are you sure!" data-method="DELETE">
+                    <i class="icon-enter"></i> Delete
+                </a>
+            </li>            
+        </ul>
+    </div>
 	<!-- Basic datatable -->
 	<div class="panel panel-flat">
 		<div class="table-container">
 			<table class="table table-striped">
 				<thead>
 					<tr class="bg-teal-800">
-						<th>Name</th>
-						<th>Size</th>
-						<th>Image Style</th>
-						<th>Creator</th>
-						<th>Created At</th>
-						<th>Status</th>
-						<th class="text-right">Actions</th>
+						<th width="1%" class="check_all_list">
+                            <input type="checkbox" class="styled">
+                        </th>
+						<th><%= t(:name) %></th>
+						<th><%= t(:size) %></th>
+						<th><%= t(:image_style) %></th>
+						<th class="text-center"><%= t(:creator)%></th>
+						<th><%= t(:created_at) %></th>
+						<th class="text-right"><%= t(:actions) %></th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @slideshows.each do |slideshow| %>
 						<tr>
+							<td width="1%">
+                                <input type="checkbox" class="node styled"
+                                    name="ids[]"
+                                    value="<%= slideshow.id %>"
+                                />
+                            </td>
 							<td class="kq_search">
-								<%= slideshow.name %>
+								<%= slideshow.name %><br />
+								<%= display_status(slideshow.status) %>
 							</td>
 							<td class="kq_search">
 								<%= slideshow.width %>x<%= slideshow.height %>
@@ -67,14 +87,10 @@
 							<td class="kq_search">
 								<%= slideshow.image_style %>
 							</td>
-							<td>
-								<div class="media-left align_center">
-									<img src="" class="img-circle" alt="">
-									<br />Creator
-								</div>
+							<td class="text-center">
+								<%= user_box(slideshow.user) %>
 							</td>
 							<td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
-							<td><%= display_status(slideshow.status) %></td>
 							<td class="text-right">
 							  <div class="btn-group">
 									<%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft_slideshows.edit_admin_slideshow_path(slideshow), class: "btn bg-teal-400 btn-icon" %>

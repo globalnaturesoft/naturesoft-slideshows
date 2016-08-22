@@ -60,16 +60,23 @@ module Naturesoft
           render text: 'Slideshow was successfully destroyed.'
         end
         
-        # ENABLE /slides/stutus
+        # ENABLE /slideshows/stutus
         def enable
           @slideshow.enable
           render text: "Status was sucessfully enabled"
         end
         
-        # DISABLE /slides/stutus
+        # DISABLE /slideshows/stutus
         def disable
           @slideshow.disable
           render text: "Status was sucessfully disabled"
+        end
+        
+        # DELETE /slideshows/delete?ids=1,2,3
+        def delete
+          @slideshows = Slideshow.where(id: params[:ids].split(","))
+          @slideshows.destroy_all
+          render text: 'Slideshows(s) was successfully destroyed.'
         end
     
         private

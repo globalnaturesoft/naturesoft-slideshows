@@ -72,6 +72,13 @@ module Naturesoft
           @slide.disable
           render text: "Status was sucessfully disabled"
         end
+        
+        # DELETE /slides/delete?ids=1,2,3
+        def delete
+          @slides = Slide.where(id: params[:ids].split(","))
+          @slides.destroy_all
+          render text: 'Slide(s) was successfully destroyed.'
+        end
     
         private
           # Use callbacks to share common setup or constraints between actions.
