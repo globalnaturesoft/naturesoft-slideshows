@@ -13,7 +13,7 @@ module Naturesoft
         
         # GET /slides
         def index
-          @slides = Naturesoft::Slideshows::Slide.search(params).paginate(:page => params[:page], :per_page => 1)
+          @slides = Naturesoft::Slideshows::Slide.search(params).paginate(:page => params[:page], :per_page => 10)
         end
     
         # GET /slides/1

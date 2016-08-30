@@ -5,7 +5,7 @@
 </div>
 <br />
 
-<form class="listing-form">
+<form class="listing-form sortable" sort-url="<%= naturesoft.admin_custom_sort_path(class: "Naturesoft::Slideshows::Slide") %>">
     <!--<div class="panel panel-flat">-->
         <div class="panel panel-body border-top-primary filter-box">
             <div class="row">
@@ -18,13 +18,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label><%= t(:sort_by) %></label>
-                        <%= select_tag(:sort_by, options_for_select(Naturesoft::Slideshows::Slide.sort_by, :selected => params[:sort_by]), class: "select2") %>
+                        <%= select_tag(:sort_by, options_for_select(Naturesoft::Slideshows::Slide.sort_by, :selected => params[:sort_by]), class: "select2", "sort-cond": "naturesoft_slideshows_slides.custom_order") %>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label><%= t(:sort_order) %></label>
-                        <%= select_tag(:sort_orders, options_for_select(Naturesoft::Slideshows::Slide.sort_orders, :selected => params[:sort_orders]), class: "select2") %>
+                        <%= select_tag(:sort_orders, options_for_select(Naturesoft::Slideshows::Slide.sort_orders, :selected => params[:sort_orders]), class: "select2", "sort-cond": "asc") %>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -72,14 +72,18 @@
                 <tbody>
                     <% @slides.each do |slide| %>
                         <tr>
-				<td width="1%">
+				<td width="1%" class="text-nowrap">
 					<input type="checkbox" class="node styled"
 						name="ids[]"
 						value="<%= slide.id %>"
 					/>
+					<input type="hidden"
+						name="custom_order"
+						value="<%= slide.custom_order %>"
+					/>
 				</td>
 				<td>
-					<%= image_tag(slide.image.system, size: "70x70", class: "img-rounded img-preview") %>
+					<%= image_tag(slide.image.system, size: "70x50", class: "img-rounded img-preview") %>
 				</td>
 				<td class="kq_search">
 					<%= slide.name %>

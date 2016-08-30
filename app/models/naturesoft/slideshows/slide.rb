@@ -1,5 +1,6 @@
 module Naturesoft::Slideshows
   class Slide < ApplicationRecord
+		include Naturesoft::CustomOrder
     belongs_to :user
 		belongs_to :slideshow
 		
@@ -14,6 +15,7 @@ module Naturesoft::Slideshows
     
     def self.sort_by
       [
+				["Custom order","naturesoft_slideshows_slides.custom_order"],
         ["Name","naturesoft_slideshows_slides.name"],
         ["Created At","naturesoft_slideshows_slides.created_at"]
       ]
