@@ -12,6 +12,7 @@ Naturesoft::Slideshows::Engine.routes.draw do
         put ':id/enable' => 'slideshows#enable', :as => 'enable'
         put ':id/disable' => 'slideshows#disable', :as => 'disable'
         delete 'delete'
+        get "select2"
       end
     end
   end
