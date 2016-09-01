@@ -15,17 +15,21 @@
 
 <div class="panel panel-flat">
   
-  <div class="panel-heading"></div>
-  
   <div class="panel-body">
 
     <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal", id: "validate_checking", multipart: true}) do |f| %>
     
       <div class="form-group">
-        <label class="col-md-2 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
-        <div class="media no-margin-top col-md-10">
+        <label class="col-md-12 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
+        <div class="media no-margin-top col-md-12">
           <div class="media-left">
-            <a href="#"><img src="<%= slide.image.system %>" style="width: 60px; height: 60px; border-radius: 2px;" alt=""></a>
+            <a href="#">
+              <% if slide.image.system.present? %>
+                <img src="<%= slide.image.system %>" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+              <% else %>
+                <img src="/backend/assets/images/placeholder.jpg" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+              <% end %>
+            </a>
           </div>
     
           <div class="media-body">
@@ -35,23 +39,28 @@
         </div>
       </div>
       
-      <div class="form-group">
-        <label class="col-md-2 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
-        <div class="col-md-10">
-          <%= f.text_field :name, class: "form-control required" %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <%= f.text_field :name, class: "form-control required" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="col-md-12 control-label" ><%= t(:slideshow_option) %> <span class='text-danger'>*</span></label>
+            <div class="col-md-12">
+              <%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>
+            </div>
+          </div>
         </div>
       </div>
       
       <div class="form-group">
-        <label class="col-md-2 control-label" ><%= t(:slideshow_option) %> <span class='text-danger'>*</span></label>
-        <div class="col-md-10">
-          <%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>
-        </div>
-      </div>
-          
-      <div class="form-group">
-        <label class="col-md-2 control-label" ><%= t(:description) %> </label>
-        <div class="col-md-10">
+        <label class="col-md-12 control-label" ><%= t(:description) %> </label>
+        <div class="col-md-12">
           <%= f.text_area :description, class: "form-control required", style: "min-width:100%;max-width:100%" %>
         </div>
       </div>

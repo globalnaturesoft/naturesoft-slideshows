@@ -65,6 +65,7 @@
 						<th><%= t(:image_style) %></th>
 						<th class="text-center"><%= t(:creator)%></th>
 						<th><%= t(:created_at) %></th>
+						<th><%= t(:status) %></th>
 						<th class="text-right"><%= t(:actions) %></th>
 					</tr>
 				</thead>
@@ -78,8 +79,7 @@
                                 />
                             </td>
 							<td class="kq_search">
-								<%= slideshow.name %><br />
-								<%= display_status(slideshow.status) %>
+								<%= slideshow.name %>
 							</td>
 							<td class="kq_search">
 								<%= slideshow.width %>x<%= slideshow.height %>
@@ -91,6 +91,7 @@
 								<%= user_box(slideshow.user) %>
 							</td>
 							<td><%= slideshow.created_at.strftime("%d/%m/%Y") %></td>
+							<td><%= display_status(slideshow.status) %></td>
 							<td class="text-right">
 							  <div class="btn-group">
 									<%= link_to '<i class="icon-pencil"></i>'.html_safe, naturesoft_slideshows.edit_admin_slideshow_path(slideshow), class: "btn bg-teal-400 btn-icon" %>
