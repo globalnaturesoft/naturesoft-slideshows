@@ -50,12 +50,12 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="col-md-12 control-label" ><%= t(:slideshow_option) %> <span class='text-danger'>*</span></label>
+            <label class="col-md-12 control-label" ><%= t(:slideshow) %> <span class='text-danger'>*</span></label>
             <div class="col-md-12">
               <!--<%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>-->
               <div class="input-group">
-                <% selected = options_for_select([slide.slideshow.name, slide.slideshow_id],slide.slideshow_id) if slide.slideshow.present? %>
-                <%= select_tag("slideshow_id",
+                <% selected = options_for_select([[slide.slideshow.name, slide.slideshow_id]],slide.slideshow_id) if slide.slideshow.present? %>
+                <%= select_tag("slide[slideshow_id]",
                   selected,
                   {
                     class: "select2-ajax",
@@ -64,7 +64,7 @@
                   }
                 ) %>
                 <span class="input-group-btn">
-                  <a class="btn btn-info" href="<%= naturesoft_galleries.new_admin_gallery_path %>"><i class="icon-plus2"></i></a>
+                  <a class="btn btn-info" href="<%= naturesoft_slideshows.new_admin_slideshow_path %>"><i class="icon-plus2"></i></a>
                 </span>
               </div>
             </div>
@@ -75,7 +75,7 @@
       <div class="form-group">
         <label class="col-md-12 control-label" ><%= t(:description) %> </label>
         <div class="col-md-12">
-          <%= f.text_area :description, class: "form-control required", style: "min-width:100%;max-width:100%" %>
+          <%= f.text_area :description, class: "form-control", style: "min-width:100%;max-width:100%" %>
         </div>
       </div>
     
