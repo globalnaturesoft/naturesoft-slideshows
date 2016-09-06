@@ -6,7 +6,7 @@
 <br />
 <form class="listing-form">
   
-	<div class="panel panel-flat">
+	<div class="panel panel-flat border-top-primary">
 		<div class="panel-body filter-box">                
 			<div class="row">
 				<div class="col-md-3">
@@ -62,7 +62,6 @@
                         </th>
 						<th><%= t(:name) %></th>
 						<th><%= t(:size) %></th>
-						<th><%= t(:image_style) %></th>
 						<th class="text-center"><%= t(:creator)%></th>
 						<th><%= t(:created_at) %></th>
 						<th><%= t(:status) %></th>
@@ -82,10 +81,7 @@
 								<%= slideshow.name %>
 							</td>
 							<td class="kq_search">
-								<%= slideshow.width %>x<%= slideshow.height %>
-							</td>
-							<td class="kq_search">
-								<%= slideshow.image_style %>
+								<span style="text-transform: uppercase"><%= slideshow.image_style %> </span>(<%= slideshow.width %>x<%= slideshow.height %>)
 							</td>
 							<td class="text-center">
 								<%= user_box(slideshow.user) %>
