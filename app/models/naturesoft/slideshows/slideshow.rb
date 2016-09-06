@@ -1,9 +1,19 @@
 module Naturesoft::Slideshows
   class Slideshow < ApplicationRecord
     belongs_to :user
+    has_many :slides
+    
     validates :name, presence: true
     validates :width, presence: true
     validates :height, presence: true
+    
+    after_save :recreate_thumbs
+    
+    def recreate_thumbs
+			slides.each do |s|
+				s.recreate_thumbs
+			end
+		end
     
     def self.filter_image_style
       [

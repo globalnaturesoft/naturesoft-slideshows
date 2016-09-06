@@ -1,8 +1,6 @@
 module Naturesoft::Slideshows
   class Slide < ApplicationRecord
 		include Naturesoft::CustomOrder
-    belongs_to :user
-		belongs_to :slideshow
 		
 		validates :image, presence: true
 		validates :image, allow_blank: true, format: {
@@ -11,7 +9,17 @@ module Naturesoft::Slideshows
 		}
 		validates :name, presence: true
 		validates :slideshow_id, presence: true
-		mount_uploader :image, Naturesoft::Slideshows::SlideUploader
+		
+		mount_uploader :image, Naturesoft::Slideshows::SlideUploader		
+		
+    belongs_to :user
+		belongs_to :slideshow
+		
+		after_save :recreate_thumbs
+    
+    def recreate_thumbs
+			self.image.recreate_versions!
+		end
     
     def self.sort_by
       [
