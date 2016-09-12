@@ -1,0 +1,9 @@
+<%
+  options = nsmodule.get_options
+  slideshow = Naturesoft::Slideshows::Slideshow.find(options["slideshow_id"])
+%>
+
+<%= render "naturesoft/"+nsmodule.engine_name+"/admin/nsmodules/"+nsmodule.module_name+"/templates/default",
+  slideshow: slideshow,
+  options: options
+%>

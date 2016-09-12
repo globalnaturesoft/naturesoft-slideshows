@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label" ><%= t(:slideshow) %> <span class='text-danger'>*</span></label>
+            <div class="">
+              <% slideshow = Naturesoft::Slideshows::Slideshow.where(id: options["slideshow_id"]).first %>
+                <% selected = options_for_select([[slideshow.name,slideshow.id]],slideshow.id) if !slideshow.nil? %>
+                <%= select_tag("options[slideshow_id]",
+                  selected,
+                  {
+                    class: "select2-ajax",
+                    include_blank: "none",
+                    "data-url": naturesoft_slideshows.select2_admin_slideshows_path,
+                  }
+                ) %>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-group">
+        <label class="control-label" ><%= t(:style) %> <span class='text-danger'>*</span></label>
+        <div class="">
+            <input type="text" value="default" name="options[style]" class="form-control" >
+        </div>
+    </div>
+  </div>
+</div>
