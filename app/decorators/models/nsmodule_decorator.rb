@@ -4,6 +4,7 @@ Naturesoft::Nsmodule.class_eval do
       "label" => "Slider",
       "options" => {
         "slideshow_id" => nil,
+        "style" => "default",
       }    
     }
   }
