@@ -88,7 +88,7 @@ module Naturesoft
     
           # Only allow a trusted parameter "white list" through.
           def slide_params
-            params.fetch(:slide, {}).permit(:name, :description, :image, :slideshow_id, :status)
+            params.fetch(:slide, {}).permit(:name, :description, :image, :slideshow_id, :link, :button_text)
           end
       end
     end

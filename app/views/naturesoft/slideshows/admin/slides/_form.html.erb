@@ -1,89 +1,121 @@
 <% if slide.errors.any? %>
-  <div class="alert alert-warning alert-bordered">
-    <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-    <div id="error_explanation">
-      <h2><%= pluralize(slide.errors.count, "error") %> prohibited this slide from being saved:</h2>
-  
-      <ul>
-      <% slide.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-warning alert-bordered">
+        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+        <div id="error_explanation">
+            <h2><%= pluralize(slide.errors.count, "error") %> prohibited this slide from being saved:</h2>
+        
+            <ul>
+                <% slide.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
     </div>
-  </div>
 <% end %>
 
 <div class="panel panel-flat">
   
-  <div class="panel-body">
-
-    <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal", id: "validate_checking", multipart: true}) do |f| %>
-    
-      <div class="form-group">
-        <label class="col-md-12 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
-        <div class="media no-margin-top col-md-12">
-          <div class="media-left">
-            <a href="#">
-              <% if slide.image.system.present? %>
-                <img src="<%= slide.image.system %>" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
-              <% else %>
-                <img src="/backend/assets/images/placeholder.jpg" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
-              <% end %>
-            </a>
-          </div>
-    
-          <div class="media-body">
-            <input type="file" name="slide[image]" class="file-styled">
-            <span class="help-block">Accepted formats: gif, png, jpg.</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label class="col-md-12 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
-            <div class="col-md-12">
-              <%= f.text_field :name, class: "form-control required" %>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label class="col-md-12 control-label" ><%= t(:slideshow) %> <span class='text-danger'>*</span></label>
-            <div class="col-md-12">
-              <!--<%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>-->
-              <div class="input-group">
-                <% selected = options_for_select([[slide.slideshow.name, slide.slideshow_id]],slide.slideshow_id) if slide.slideshow.present? %>
-                <%= select_tag("slide[slideshow_id]",
-                  selected,
-                  {
-                    class: "select2-ajax",
-                    include_blank: "none",
-                    "data-url": select2_admin_slideshows_path,
-                  }
-                ) %>
-                <span class="input-group-btn">
-                  <a class="btn btn-info" href="<%= naturesoft_slideshows.new_admin_slideshow_path %>"><i class="icon-plus2"></i></a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label class="col-md-12 control-label" ><%= t(:description) %> </label>
-        <div class="col-md-12">
-          <%= f.text_area :description, class: "form-control", style: "min-width:100%;max-width:100%" %>
-        </div>
-      </div>
-    
-      <div class="text-right">
-        <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
-        <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_slideshows.admin_slides_path, class: "btn btn-danger"%>
-      </div>
+    <div class="panel-body">
+  
+        <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal", id: "validate_checking", multipart: true}) do |f| %>
         
-    <% end %>
-  </div>
+            <div class="tabbable tab-content-bordered">
+                <ul class="nav nav-tabs bg-primary">
+                    <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:general) %></a></li>
+                    <li><a href="#control-tab2" data-toggle="tab"><%= t(:others) %> </a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane has-padding active" id="control-tab1">
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" ><%= t(:image) %> <span class='text-danger'>*</span></label>
+                            <div class="media no-margin-top col-md-12">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <% if slide.image.system.present? %>
+                                            <img src="<%= slide.image.system %>" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+                                        <% else %>
+                                            <img src="/backend/assets/images/placeholder.jpg" style="width: 70px; height: 70px; border-radius: 2px;" alt="">
+                                        <% end %>
+                                    </a>
+                                </div>
+                          
+                                <div class="media-body">
+                                    <input type="file" name="slide[image]" class="file-styled">
+                                    <span class="help-block">Accepted formats: gif, png, jpg.</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label" ><%= t(:name) %> <span class='text-danger'>*</span></label>
+                                    <div class="col-md-12">
+                                        <%= f.text_field :name, class: "form-control required" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label" ><%= t(:slideshow) %> <span class='text-danger'>*</span></label>
+                                    <div class="col-md-12">
+                                        <!--<%= f.collection_select(:slideshow_id, Naturesoft::Slideshows::Slideshow.all, :id, :name, {:prompt=> "Choose..."}, {class: "select2"}) %>-->
+                                        <div class="input-group">
+                                            <% selected = options_for_select([[slide.slideshow.name, slide.slideshow_id]],slide.slideshow_id) if slide.slideshow.present? %>
+                                            <%= select_tag("slide[slideshow_id]",
+                                                selected,
+                                                {
+                                                  class: "select2-ajax",
+                                                  include_blank: "none",
+                                                  "data-url": select2_admin_slideshows_path,
+                                                }
+                                            ) %>
+                                            <span class="input-group-btn">
+                                                <a class="btn btn-info" href="<%= naturesoft_slideshows.new_admin_slideshow_path %>"><i class="icon-plus2"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" ><%= t(:description) %> </label>
+                            <div class="col-md-12">
+                                <%= f.text_area :description, class: "form-control", style: "min-width:100%;max-width:100%" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane has-padding active" id="control-tab2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label" ><%= t(:link_to) %> </label>
+                                    <div class="col-md-12">
+                                        <%= f.text_field :link, class: "form-control" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label" ><%= t(:button_text) %> </label>
+                                    <div class="col-md-12">
+                                        <%= f.text_field :button_text, class: "form-control" %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+                  
+            <br />
+          
+            <div class="text-right">
+                <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
+                <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_slideshows.admin_slides_path, class: "btn btn-danger"%>
+            </div>
+            
+        <% end %>
+    </div>
 </div>
