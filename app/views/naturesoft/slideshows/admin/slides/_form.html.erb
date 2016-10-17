@@ -17,12 +17,12 @@
   
     <div class="panel-body">
   
-        <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal", id: "validate_checking", multipart: true}) do |f| %>
+        <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
         
             <div class="tabbable tab-content-bordered">
                 <ul class="nav nav-tabs bg-primary">
-                    <li class="active"><a href="#control-tab1" data-toggle="tab"><%= t(:general) %></a></li>
-                    <li><a href="#control-tab2" data-toggle="tab"><%= t(:others) %> </a></li>
+                    <li class="active"><a href="#control-tab1" data-toggle="tab"><i class="icon-grid5"></i> <%= t(:general) %></a></li>
+                    <li><a href="#control-tab2" data-toggle="tab"><i class="icon-menu"></i> <%= t(:others) %> </a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane has-padding active" id="control-tab1">
@@ -113,7 +113,6 @@
           
             <div class="text-right">
                 <%= button_tag "#{t(:save)}<i class=\"icon-check position-right\"></i>".html_safe, class: "btn btn-primary"%>
-                <%= link_to "#{t(:cancel)}<i class=\"icon-cross3 position-right\"></i>".html_safe, naturesoft_slideshows.admin_slides_path, class: "btn btn-danger"%>
             </div>
             
         <% end %>
