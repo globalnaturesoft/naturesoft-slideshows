@@ -1,5 +1,5 @@
 Naturesoft::Slideshows::Engine.routes.draw do  
-  namespace :admin, module: "admin" do
+  namespace :backend, module: "backend" do
     resources :slides do
       collection do
         put ':id/enable' => 'slides#enable', :as => 'enable'

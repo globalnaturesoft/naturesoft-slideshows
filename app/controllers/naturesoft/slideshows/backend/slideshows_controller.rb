@@ -1,13 +1,13 @@
 module Naturesoft
   module Slideshows
     module Admin
-      class SlideshowsController < Naturesoft::Admin::AdminController
+      class SlideshowsController < Naturesoft::Backend::BackendController
         before_action :set_slideshow, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
         
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Slideshows", naturesoft_slideshows.admin_slideshows_path
+          add_breadcrumb "Slideshows", naturesoft_slideshows.backend_slideshows_path
         end
     
         # GET /slideshows
@@ -17,19 +17,19 @@ module Naturesoft
     
         # GET /slideshows/1
         def show
-          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_admin_slideshow_path
+          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_backend_slideshow_path
           add_breadcrumb "Show"
         end
     
         # GET /slideshows/new
         def new
           @slideshow = Slideshow.new
-          add_breadcrumb "New slideshow", naturesoft_slideshows.new_admin_slideshow_path
+          add_breadcrumb "New slideshow", naturesoft_slideshows.new_backend_slideshow_path
         end
     
         # GET /slideshows/1/edit
         def edit
-          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_admin_slideshow_path
+          add_breadcrumb @slideshow.name, naturesoft_slideshows.new_backend_slideshow_path
           add_breadcrumb "Edit"
         end
     
@@ -39,7 +39,7 @@ module Naturesoft
           @slideshow.user = current_user
     
           if @slideshow.save
-            redirect_to admin_slideshows_path, notice: 'Slideshow was successfully created.'
+            redirect_to backend_slideshows_path, notice: 'Slideshow was successfully created.'
           else
             render :new
           end
@@ -48,7 +48,7 @@ module Naturesoft
         # PATCH/PUT /slideshows/1
         def update
           if @slideshow.update(slideshow_params)
-            redirect_to admin_slideshows_path, notice: 'Slideshow was successfully updated.'
+            redirect_to backend_slideshows_path, notice: 'Slideshow was successfully updated.'
           else
             render :edit
           end

@@ -1,14 +1,14 @@
 module Naturesoft
   module Slideshows
-    module Admin
-      class SlidesController < Naturesoft::Admin::AdminController
+    module Backend
+      class SlidesController < Naturesoft::Backend::BackendController
         before_action :set_slide, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
         helper_method :change 
         
         # add top breadcrumb
         def default_breadcrumb
-          add_breadcrumb "Slides", naturesoft_slideshows.admin_slides_path
+          add_breadcrumb "Slides", naturesoft_slideshows.backend_slides_path
         end
         
         # GET /slides
@@ -18,19 +18,19 @@ module Naturesoft
     
         # GET /slides/1
         def show
-          add_breadcrumb @slide.name, naturesoft_slideshows.new_admin_slide_path
+          add_breadcrumb @slide.name, naturesoft_slideshows.new_backend_slide_path
           add_breadcrumb "Show"
         end
     
         # GET /slides/new
         def new
           @slide = Naturesoft::Slideshows::Slide.new
-          add_breadcrumb "New slide", naturesoft_slideshows.new_admin_slide_path
+          add_breadcrumb "New slide", naturesoft_slideshows.new_backend_slide_path
         end
     
         # GET /slides/1/edit
         def edit
-          add_breadcrumb @slide.name, naturesoft_slideshows.new_admin_slide_path
+          add_breadcrumb @slide.name, naturesoft_slideshows.new_backend_slide_path
           add_breadcrumb "Edit"
         end
     
@@ -40,7 +40,7 @@ module Naturesoft
           @slide.user = current_user
     
           if @slide.save
-            redirect_to admin_slides_path, notice: 'Slide was successfully created.'
+            redirect_to backend_slides_path, notice: 'Slide was successfully created.'
           else
             render :new
           end
@@ -49,7 +49,7 @@ module Naturesoft
         # PATCH/PUT /slides/1
         def update
           if @slide.update(slide_params)
-            redirect_to admin_slides_path, notice: 'Slide was successfully updated.'
+            redirect_to backend_slides_path, notice: 'Slide was successfully updated.'
           else
             render :edit
           end

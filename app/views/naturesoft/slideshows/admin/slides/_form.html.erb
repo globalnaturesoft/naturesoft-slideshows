@@ -17,7 +17,7 @@
   
     <div class="panel-body">
   
-        <%= form_for([naturesoft_slideshows, :admin, slide], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
+        <%= form_for([naturesoft_slideshows, :backend, slide], html: {class: "form-horizontal validate", multipart: true}) do |f| %>
         
             <div class="tabbable tab-content-bordered">
                 <ul class="nav nav-tabs bg-primary">
@@ -67,11 +67,11 @@
                                                 {
                                                   class: "select2-ajax",
                                                   include_blank: "none",
-                                                  "data-url": select2_admin_slideshows_path,
+                                                  "data-url": select2_backend_slideshows_path,
                                                 }
                                             ) %>
                                             <span class="input-group-btn">
-                                                <a class="btn btn-info" href="<%= naturesoft_slideshows.new_admin_slideshow_path %>"><i class="icon-plus2"></i></a>
+                                                <a class="btn btn-info" href="<%= naturesoft_slideshows.new_backend_slideshow_path %>"><i class="icon-plus2"></i></a>
                                             </span>
                                         </div>
                                     </div>
