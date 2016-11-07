@@ -1,6 +1,6 @@
 module Naturesoft
   module Slideshows
-    module Admin
+    module Backend
       class SlideshowsController < Naturesoft::Backend::BackendController
         before_action :set_slideshow, only: [:show, :edit, :update, :destroy, :enable, :disable]
         before_action :default_breadcrumb
