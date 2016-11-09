@@ -77,9 +77,7 @@
                                     value="<%= slideshow.id %>"
                                 />
                             </td>
-							<td class="kq_search">
-								<%= slideshow.name %>
-							</td>
+							<td class="kq_search"><strong><%= link_to slideshow.name, naturesoft_slideshows.edit_backend_slideshow_path(slideshow) %></strong></td>
 							<td class="kq_search">
 								<span style="text-transform: uppercase"><%= slideshow.image_style %> </span>(<%= slideshow.width %>x<%= slideshow.height %>)
 							</td>
